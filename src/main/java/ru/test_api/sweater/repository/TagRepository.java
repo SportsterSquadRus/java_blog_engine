@@ -5,5 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import ru.test_api.sweater.entity.Tag;
 
 public interface TagRepository extends JpaRepository<Tag, String>{
+    Tag findByTagName(String tagName);
     
 }
