@@ -1,7 +1,6 @@
 package ru.test_api.sweater.controller;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ru.test_api.sweater.entity.Message;
-import ru.test_api.sweater.entity.Tag;
 import ru.test_api.sweater.repository.MessageRepository;
 import ru.test_api.sweater.repository.TagRepository;
 
@@ -38,12 +36,14 @@ public class MessageController {
         return msgRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
     }
 
+    // @GetMapping
+    // public String filterMessage(@PathVariable("tag") String tag) {
+    //     return tag;
+    // }
+
     @PostMapping
     public Message messageCreate(@RequestBody Message msg) {
-        Set<Tag> newTags = msg.getTags();
-        
-        Set<Tag> tags = newTags.stream().filter(tag -> tagRepository.findById(tag.getTagName()).isEmpty()).collect(Collectors.toSet());
-        tagRepository.saveAll(tags);
+        tagRepository.saveAll(msg.getTags().stream().filter(tag -> tagRepository.findById(tag.getTagName()).isEmpty()).collect(Collectors.toSet()));
 
         return msgRepository.save(msg);
     }
