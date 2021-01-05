@@ -14,7 +14,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-public class User implements UserDetails {
+public class Author implements UserDetails {
 
     /**
      *
@@ -32,9 +32,9 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> role;
 
-    public User() {}
+    public Author() {}
 
-    public User(String name, String pass) {
+    public Author(String name, String pass) {
         this.password = pass;
         this.username = name;
     }

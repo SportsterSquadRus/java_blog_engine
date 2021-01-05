@@ -8,14 +8,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import ru.test_api.sweater.entity.Role;
-import ru.test_api.sweater.entity.User;
+import ru.test_api.sweater.entity.Author;
 import ru.test_api.sweater.repository.RoleRepository;
-import ru.test_api.sweater.repository.UserRepository;
+import ru.test_api.sweater.repository.AuthorRepository;
 
 public class UserService implements UserDetailsService {
 
 
-    private UserRepository userRepository;
+    private AuthorRepository userRepository;
     private RoleRepository roleRepository;
     private BCryptPasswordEncoder passwordEncoder;
 
@@ -24,7 +24,7 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         
-        User user = userRepository.findByUsername(username);
+        Author user = userRepository.findByUsername(username);
 
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
@@ -34,8 +34,8 @@ public class UserService implements UserDetailsService {
         
     }
 
-    public boolean saveUser(User user) {
-        User dbUser = userRepository.findByUsername(user.getUsername());
+    public boolean saveUser(Author user) {
+        Author dbUser = userRepository.findByUsername(user.getUsername());
 
         if (dbUser == null) {
             Role userRole = roleRepository.findByName("USER");
