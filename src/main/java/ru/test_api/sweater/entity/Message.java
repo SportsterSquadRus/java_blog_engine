@@ -3,6 +3,7 @@ package ru.test_api.sweater.entity;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 public class Message {
@@ -21,6 +26,9 @@ public class Message {
 
     private String text;
 
+    @Column(updatable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @CreatedDate
     private LocalDateTime creationDate;
 
     @ManyToMany(fetch = FetchType.EAGER)
