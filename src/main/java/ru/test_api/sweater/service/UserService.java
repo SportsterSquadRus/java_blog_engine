@@ -6,17 +6,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import ru.test_api.sweater.entity.Role;
 import ru.test_api.sweater.entity.Author;
-import ru.test_api.sweater.repository.RoleRepository;
 import ru.test_api.sweater.repository.AuthorRepository;
 
+@Service
 public class UserService implements UserDetailsService {
 
 
     private AuthorRepository userRepository;
-    private RoleRepository roleRepository;
     private BCryptPasswordEncoder passwordEncoder;
 
 
@@ -34,16 +34,12 @@ public class UserService implements UserDetailsService {
         
     }
 
-    public boolean saveUser(Author user) {
+    public boolean saveAuthor(Author user) {
         Author dbUser = userRepository.findByUsername(user.getUsername());
 
         if (dbUser == null) {
-            Role userRole = roleRepository.findByName("USER");
-            if (userRole == null) {
-                userRole = new Role("USER");
-                
-            }
-            user.setRole(Collections.singleton(userRole));
+
+            user.setRoles(Collections.singleton(Role.USER));
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
             return true;
