@@ -2,6 +2,8 @@ package ru.test_api.sweater.controller;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ru.test_api.sweater.entity.Author;
 import ru.test_api.sweater.service.UserService;
+import ru.test_api.sweater.service.Views;
 
 @RestController
 @RequestMapping("auth")
@@ -21,8 +24,7 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 
-
-
+    @JsonView(Views.FullInfo.class)
     @GetMapping
     public List<Author> authorList() {return userService.findAll();}
 

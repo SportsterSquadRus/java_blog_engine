@@ -4,8 +4,12 @@ import java.util.Collection;
 import java.util.Set;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import ru.test_api.sweater.service.Views;
 
 @Entity
 public class Author implements UserDetails {
@@ -17,15 +21,19 @@ public class Author implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(Views.FullInfo.class)
     private Long id;
 
+    @JsonView(Views.Basic.class)
     private String username;
 
+    @JsonView(Views.FullInfo.class)
     private String password;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
+    @JsonView(Views.Basic.class)
     private Set<Role> roles;
 
     public Author() {
