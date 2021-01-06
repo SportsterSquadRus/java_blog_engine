@@ -48,7 +48,7 @@ public class MessageController {
     @JsonView(Views.Basic.class)
     public List<Message> filterMessage(@RequestParam String tag_name) {
         try {
-            Tag tag = tagRepository.findByTagName(tag_name);
+            Tag tag = tagRepository.findByTagName(tag_name.toLowerCase());
             return msgRepository.findByTags(tag);
         } catch (Exception e) {
             throw new ResourceNotFoundException();
