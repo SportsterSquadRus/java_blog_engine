@@ -17,5 +17,5 @@ public class TagController {
     public TagController(TagRepository tagRepository) {this.tagRepository = tagRepository;}
 
     @GetMapping
-    public List<Tag> tagList() {return tagRepository.findAll();}  
+    public List<Tag> tagList() {return tagRepository.findAll();}
 }

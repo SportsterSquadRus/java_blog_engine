@@ -15,29 +15,37 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import ru.test_api.sweater.service.Views;
 
 @Entity
 public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(Views.FullInfo.class)
     private Long id;
 
+    @JsonView(Views.Basic.class)
     private String text;
 
     @Column(updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @CreationTimestamp
+    @JsonView(Views.Basic.class)
     private LocalDateTime creationDate;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "tags", joinColumns = {@JoinColumn(name = "tag_id")}, inverseJoinColumns = {@JoinColumn(name = "message_id")})
+    @JsonView(Views.Basic.class)
     private Set<Tag> tags;
 
     @ManyToOne
     @JoinColumn(name = "author_id")
+    @JsonView(Views.Basic.class)
     private Author author;
 
     public Message() {}
