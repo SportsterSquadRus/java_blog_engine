@@ -36,18 +36,6 @@ public class Author implements UserDetails {
         this.username = name;
     }
 
-    public Author(String name, String pass, Role role) {
-        this.password = pass;
-        this.username = name;
-        this.roles.add(role);
-    }
-
-    public Author(String name, String pass, Set<Role> roles) {
-        this.password = pass;
-        this.username = name;
-        this.roles = roles;
-    }
-
     public Long getId() {
         return id;
     }

@@ -1,7 +1,9 @@
 package ru.test_api.sweater.service;
 
 import java.util.Collections;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,10 +17,10 @@ import ru.test_api.sweater.repository.AuthorRepository;
 @Service
 public class UserService implements UserDetailsService {
 
-
+    @Autowired
     private AuthorRepository userRepository;
+    @Autowired
     private BCryptPasswordEncoder passwordEncoder;
-
 
 
     @Override
@@ -47,6 +49,10 @@ public class UserService implements UserDetailsService {
         } else {
             return false;            
         }
+    }
+
+    public List<Author> findAll() {
+        return userRepository.findAll();
     }
     
 }
