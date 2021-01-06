@@ -66,7 +66,6 @@ public class Author implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // TODO Auto-generated method stub
         return getRoles();
     }
 
@@ -88,6 +87,11 @@ public class Author implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return this.username;
     }
     
 }

@@ -34,7 +34,5 @@ public class RegistrationController {
         } else {
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }
-
     }
-
 }
