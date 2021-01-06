@@ -16,11 +16,11 @@ public class Tag {
 
     public Tag() {}
 
-    public Tag(String tagName) {this.tagName = tagName;}
+    public Tag(String tagName) {this.tagName = tagName.toLowerCase();}
 
     public String getTagName() {return this.tagName;}
 
-    public void setTagName(String tagName) {this.tagName = tagName;}  
+    public void setTagName(String tagName) {this.tagName = tagName.toLowerCase();}  
     
     public String toString() {return this.tagName;}
 }
