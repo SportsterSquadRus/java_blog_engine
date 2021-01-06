@@ -1,12 +1,16 @@
 package ru.test_api.sweater.controller;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,6 +67,21 @@ public class MessageController {
                 .collect(Collectors.toSet()));
 
         return msgRepository.save(msg);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> messageDelete (@PathVariable Long id, @AuthenticationPrincipal Author autjor) {
+        Optional<Message> dbMsg = msgRepository.findById(id);
+
+        if (dbMsg.isPresent() && msgRepository.getOne(id).getAuthor().equals(autjor)) {
+            msgRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+            
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);            
+        }
+
+        
     }
 
 }
