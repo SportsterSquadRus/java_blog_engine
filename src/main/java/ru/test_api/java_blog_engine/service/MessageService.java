@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import ru.test_api.java_blog_engine.entity.Author;
 import ru.test_api.java_blog_engine.entity.Message;
@@ -14,6 +15,7 @@ import ru.test_api.java_blog_engine.repository.MessageRepository;
 import ru.test_api.java_blog_engine.repository.TagRepository;
 
 @Service
+@EnableTransactionManagement
 public class MessageService {
 
     @Autowired
@@ -46,17 +48,12 @@ public class MessageService {
     }
 
     public boolean messageIdAndAuthorComparison(Long id, Author author) {
-        if (msgRepository.findById(id)
+        return msgRepository.findById(id)
                             .isPresent() && msgRepository
                                                         .getOne(id)
                                                         .getAuthor()
                                                         .equals(authorRepository
-                                                        .findByUsername(author.getUsername()))) {
-            return true;
-        } else {
-            return false;
-        }
-        
+                                                        .findByUsername(author.getUsername()));
     }
 
     public void messageTagsSaver(Message msg) {
