@@ -72,21 +72,32 @@ public class MessageController {
 
     @DeleteMapping("{id}")
     public ResponseEntity<String> messageDelete (@PathVariable Long id, @AuthenticationPrincipal Author author) {
-        if (msgServise.deleteMessage(id, author)) {   
-            System.out.println("lalala");                 
+        if (msgServise.deleteMessage(id, author)) {              
             return new ResponseEntity<>(HttpStatus.OK);            
         } else {            
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);            
         }        
     }
 
+    @JsonView(Views.Basic.class)
     @PutMapping("{id}")
     public Message editMessage(@PathVariable Long id, @RequestBody Message msg, @AuthenticationPrincipal Author author) {
-        if (msgRepository.findById(id).isPresent() && msgRepository.getOne(id).getAuthor().equals(author)) {
-            return msgServise.saveMessage(msg);            
-        } else { 
-            throw new ResourceNotFoundException();           
-        }        
-    }
 
+        if (msgServise.messageIdAndAuthorComparison(id, author)) {
+            
+            msgServise.messageTagsSaver(msg);
+
+            Message dbMsg = msgRepository.getOne(id);
+
+            dbMsg.setTags(msg.getTags());
+            dbMsg.setText(msg.getText());
+
+            return dbMsg;
+
+        } else {
+            throw new ResourceNotFoundException();            
+        }
+        
+
+    }
 }

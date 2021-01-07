@@ -76,4 +76,10 @@ public class Message {
     public String toString() {
         return getText();
     }
+
+	public void map(Object object) {
+	}
+
+	public void map() {
+	}
 }

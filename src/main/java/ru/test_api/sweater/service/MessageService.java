@@ -32,19 +32,36 @@ public class MessageService {
     }
 
     public Message saveMessage(Message msg) {
-        tagRepository.saveAll(msg.getTags().stream().filter(tag -> tagRepository.findById(tag.getTagName()).isEmpty())
-        .collect(Collectors.toSet()));
+        messageTagsSaver(msg);
         return msgRepository.save(msg);
     }
 
     public boolean deleteMessage(Long id, Author author) {
-        if (msgRepository.findById(id).isPresent() && msgRepository.getOne(id).getAuthor().equals(authorRepository.findByUsername(author.getUsername()))) {
+        if (messageIdAndAuthorComparison(id, author)) {
             msgRepository.deleteById(id);
             return true;            
         } else {
             return false;            
-        }  
+        }
+    }
 
+    public boolean messageIdAndAuthorComparison(Long id, Author author) {
+        if (msgRepository.findById(id)
+                            .isPresent() && msgRepository
+                                                        .getOne(id)
+                                                        .getAuthor()
+                                                        .equals(authorRepository
+                                                        .findByUsername(author.getUsername()))) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+
+    public void messageTagsSaver(Message msg) {
+        tagRepository.saveAll(msg.getTags().stream().filter(tag -> tagRepository.findById(tag.getTagName()).isEmpty())
+        .collect(Collectors.toSet()));
     }
 
     
