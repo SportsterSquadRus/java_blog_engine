@@ -1,6 +1,7 @@
 package ru.test_api.sweater.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -13,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -48,6 +50,11 @@ public class Message {
     @JsonView(Views.Basic.class)
     private Author author;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "comments", joinColumns = {@JoinColumn(name = "comment_id")}, inverseJoinColumns = {@JoinColumn(name = "message_id")})
+    @JsonView(Views.Basic.class)
+    private List<Comment> comments;
+
     public Message() {}
 
     public Message(String text) {this.text = text;}
@@ -64,6 +71,8 @@ public class Message {
 
     public LocalDateTime getCreationDate() {return creationDate;}
 
+    public List<Comment> getComments() {return comments;}
+
     public void setText(String text) {this.text = text;}
     
     public void setTags(Set<Tag> tag) {this.tags = tag;}
@@ -71,6 +80,8 @@ public class Message {
     public void setCreationDate(LocalDateTime creationDate) {this.creationDate = creationDate;}
 
     public void setAuthor(Author author) {this.author = author;}
+
+    public void setComments(List<Comment> comments) {this.comments = comments;}
 
     @Override
     public String toString() {
