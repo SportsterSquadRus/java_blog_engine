@@ -64,5 +64,23 @@ public class MessageService {
         .collect(Collectors.toSet()));
     }
 
+
+    public Message messageUpdate(Long id, Message msg) {
+        Message dbMsg = msgRepository.getOne(id);
+
+        dbMsg.setTags(msg.getTags());
+        dbMsg.setText(msg.getText());
+        return dbMsg;
+    }
+
+    public List<Message> filterMessageByTag(String tagName) {
+        try {
+            return msgRepository.findByTags(tagRepository.findByTagName(tagName.toLowerCase()));
+        } catch (Exception e) {
+            throw new ResourceNotFoundException();
+        }
+
+    }
+
     
 }

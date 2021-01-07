@@ -20,31 +20,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ru.test_api.sweater.entity.Author;
-
 import ru.test_api.sweater.entity.Message;
-import ru.test_api.sweater.entity.Tag;
-import ru.test_api.sweater.repository.MessageRepository;
-import ru.test_api.sweater.repository.TagRepository;
 import ru.test_api.sweater.service.MessageService;
 import ru.test_api.sweater.service.Views;
 
 @RestController
 @RequestMapping("message")
 public class MessageController {
-    private MessageRepository msgRepository;
-    private TagRepository tagRepository;
 
     @Autowired
     private MessageService msgServise;
 
-    public MessageController(MessageRepository msgRepository, TagRepository tagRepository) {
-        this.msgRepository = msgRepository;
-        this.tagRepository = tagRepository;
-    }
-
     @GetMapping
     @JsonView(Views.Basic.class)
-    public List<Message> messageList() {return msgServise.findAll();}
+    public List<Message> messageList() {
+        return msgServise.findAll();
+    }
 
     @GetMapping("{id}")
     @JsonView(Views.Basic.class)
@@ -55,12 +46,7 @@ public class MessageController {
     @GetMapping("tag_filter")
     @JsonView(Views.Basic.class)
     public List<Message> filterMessage(@RequestParam String tag_name) {
-        try {
-            Tag tag = tagRepository.findByTagName(tag_name.toLowerCase());
-            return msgRepository.findByTags(tag);
-        } catch (Exception e) {
-            throw new ResourceNotFoundException();
-        }
+        return msgServise.filterMessageByTag(tag_name);
     }
 
     @PostMapping
@@ -86,13 +72,7 @@ public class MessageController {
         if (msgServise.messageIdAndAuthorComparison(id, author)) {
             
             msgServise.messageTagsSaver(msg);
-
-            Message dbMsg = msgRepository.getOne(id);
-
-            dbMsg.setTags(msg.getTags());
-            dbMsg.setText(msg.getText());
-
-            return dbMsg;
+            return msgServise.messageUpdate(id, msg);
 
         } else {
             throw new ResourceNotFoundException();            
