@@ -26,7 +26,7 @@ public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(Views.FullInfo.class)
+    @JsonView(Views.Basic.class)
     private Long id;
 
     @JsonView(Views.Basic.class)
@@ -71,4 +71,9 @@ public class Message {
     public void setCreationDate(LocalDateTime creationDate) {this.creationDate = creationDate;}
 
     public void setAuthor(Author author) {this.author = author;}
+
+    @Override
+    public String toString() {
+        return getText();
+    }
 }
