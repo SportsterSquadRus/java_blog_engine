@@ -2,6 +2,8 @@ package ru.test_api.java_blog_engine.controller;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import com.fasterxml.jackson.annotation.JsonView;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +54,7 @@ public class MessageController {
 
     @PostMapping
     @JsonView(Views.Basic.class)
+    @Transactional
     public Message messageCreate(@RequestBody Message msg, @AuthenticationPrincipal Author author) {
         msg.setAuthor(author);
         return msgServise.saveMessage(msg);
@@ -66,6 +69,7 @@ public class MessageController {
         }        
     }
 
+    @Transactional
     @JsonView(Views.Basic.class)
     @PutMapping("{id}")
     public Message editMessage(@PathVariable Long id, @RequestBody Message msg, @AuthenticationPrincipal Author author) {
