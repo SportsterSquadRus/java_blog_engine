@@ -1,4 +1,4 @@
-package ru.test_api.sweater.config;
+package ru.test_api.java_blog_engine.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import ru.test_api.sweater.service.UserService;
+import ru.test_api.java_blog_engine.service.UserService;
 
 @Configuration
 @EnableWebSecurity

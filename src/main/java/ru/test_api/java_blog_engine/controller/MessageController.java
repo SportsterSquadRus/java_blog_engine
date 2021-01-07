@@ -1,4 +1,4 @@
-package ru.test_api.sweater.controller;
+package ru.test_api.java_blog_engine.controller;
 
 import java.util.List;
 
@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import ru.test_api.sweater.entity.Author;
-import ru.test_api.sweater.entity.Message;
-import ru.test_api.sweater.service.MessageService;
-import ru.test_api.sweater.service.Views;
+import ru.test_api.java_blog_engine.entity.Author;
+import ru.test_api.java_blog_engine.entity.Message;
+import ru.test_api.java_blog_engine.service.MessageService;
+import ru.test_api.java_blog_engine.service.Views;
 
 @RestController
 @RequestMapping("message")

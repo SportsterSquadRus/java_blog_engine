@@ -1,4 +1,4 @@
-package ru.test_api.sweater.controller;
+package ru.test_api.java_blog_engine.controller;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ru.test_api.sweater.entity.Tag;
-import ru.test_api.sweater.repository.TagRepository;
+import ru.test_api.java_blog_engine.entity.Tag;
+import ru.test_api.java_blog_engine.repository.TagRepository;
 
 @RestController
 @RequestMapping("tag")

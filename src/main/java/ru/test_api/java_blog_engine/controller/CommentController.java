@@ -1,4 +1,4 @@
-package ru.test_api.sweater.controller;
+package ru.test_api.java_blog_engine.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ru.test_api.sweater.entity.Author;
-import ru.test_api.sweater.entity.Comment;
-import ru.test_api.sweater.entity.Message;
-import ru.test_api.sweater.service.CommentService;
-import ru.test_api.sweater.service.Views;
+import ru.test_api.java_blog_engine.entity.Author;
+import ru.test_api.java_blog_engine.entity.Comment;
+import ru.test_api.java_blog_engine.entity.Message;
+import ru.test_api.java_blog_engine.service.CommentService;
+import ru.test_api.java_blog_engine.service.Views;
 
 @RestController
 @RequestMapping("comment")
