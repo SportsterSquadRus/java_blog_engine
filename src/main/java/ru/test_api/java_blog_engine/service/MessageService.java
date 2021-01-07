@@ -46,17 +46,12 @@ public class MessageService {
     }
 
     public boolean messageIdAndAuthorComparison(Long id, Author author) {
-        if (msgRepository.findById(id)
+        return msgRepository.findById(id)
                             .isPresent() && msgRepository
                                                         .getOne(id)
                                                         .getAuthor()
                                                         .equals(authorRepository
-                                                        .findByUsername(author.getUsername()))) {
-            return true;
-        } else {
-            return false;
-        }
-        
+                                                        .findByUsername(author.getUsername()));
     }
 
     public void messageTagsSaver(Message msg) {

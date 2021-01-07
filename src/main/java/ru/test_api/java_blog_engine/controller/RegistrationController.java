@@ -21,6 +21,9 @@ import ru.test_api.java_blog_engine.service.Views;
 @RequestMapping("auth")
 public class RegistrationController {
 
+    private final ResponseEntity<String> notAcceptedStatus = new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+    private final ResponseEntity<String> acceptedStatus = new ResponseEntity<>(HttpStatus.ACCEPTED);
+
     @Autowired
     private UserService userService;
 
@@ -31,10 +34,10 @@ public class RegistrationController {
     @PostMapping
     public ResponseEntity<String> userCreate(@RequestBody Author author) {
         if (!userService.saveAuthor(author)) {
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+            return notAcceptedStatus;
 
         } else {
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            return acceptedStatus;
         }
     }
 }

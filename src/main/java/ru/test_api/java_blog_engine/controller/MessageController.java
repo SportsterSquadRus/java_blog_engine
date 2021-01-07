@@ -28,6 +28,9 @@ import ru.test_api.java_blog_engine.service.Views;
 @RequestMapping("message")
 public class MessageController {
 
+    private final ResponseEntity<String> badRequestStatus = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    private final ResponseEntity<String> okStatus = new ResponseEntity<>(HttpStatus.OK);
+
     @Autowired
     private MessageService msgServise;
 
@@ -57,9 +60,9 @@ public class MessageController {
     @DeleteMapping("{id}")
     public ResponseEntity<String> messageDelete (@PathVariable Long id, @AuthenticationPrincipal Author author) {
         if (msgServise.deleteMessage(id, author)) {              
-            return new ResponseEntity<>(HttpStatus.OK);            
+            return okStatus;            
         } else {            
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);            
+            return badRequestStatus;            
         }        
     }
 
