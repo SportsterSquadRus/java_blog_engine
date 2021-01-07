@@ -99,7 +99,7 @@ public class Author implements UserDetails {
 
     @Override
     public String toString() {
-        return this.username;
+        return getUsername();
     }
     
 }
