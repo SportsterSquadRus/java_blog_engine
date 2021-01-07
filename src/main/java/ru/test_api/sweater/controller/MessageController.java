@@ -33,9 +33,7 @@ public class MessageController {
 
     @GetMapping
     @JsonView(Views.Basic.class)
-    public List<Message> messageList() {
-        return msgServise.findAll();
-    }
+    public List<Message> messageList() {return msgServise.findAll();}
 
     @GetMapping("{id}")
     @JsonView(Views.Basic.class)
