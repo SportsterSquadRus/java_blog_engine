@@ -1,4 +1,4 @@
-package ru.test_api.sweater.entity;
+package ru.test_api.java_blog_engine.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 

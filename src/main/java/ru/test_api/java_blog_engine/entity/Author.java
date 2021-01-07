@@ -1,4 +1,4 @@
-package ru.test_api.sweater.entity;
+package ru.test_api.java_blog_engine.entity;
 
 import java.util.Collection;
 import java.util.Set;
@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import ru.test_api.sweater.service.Views;
+import ru.test_api.java_blog_engine.service.Views;
 
 @Entity
 public class Author implements UserDetails {

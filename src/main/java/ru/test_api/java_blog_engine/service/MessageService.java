@@ -1,4 +1,4 @@
-package ru.test_api.sweater.service;
+package ru.test_api.java_blog_engine.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
-import ru.test_api.sweater.entity.Author;
-import ru.test_api.sweater.entity.Message;
-import ru.test_api.sweater.repository.AuthorRepository;
-import ru.test_api.sweater.repository.MessageRepository;
-import ru.test_api.sweater.repository.TagRepository;
+import ru.test_api.java_blog_engine.entity.Author;
+import ru.test_api.java_blog_engine.entity.Message;
+import ru.test_api.java_blog_engine.repository.AuthorRepository;
+import ru.test_api.java_blog_engine.repository.MessageRepository;
+import ru.test_api.java_blog_engine.repository.TagRepository;
 
 @Service
 public class MessageService {

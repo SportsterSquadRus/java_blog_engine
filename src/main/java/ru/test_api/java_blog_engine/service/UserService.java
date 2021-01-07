@@ -1,4 +1,4 @@
-package ru.test_api.sweater.service;
+package ru.test_api.java_blog_engine.service;
 
 import java.util.Collections;
 import java.util.List;
@@ -10,9 +10,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import ru.test_api.sweater.entity.Role;
-import ru.test_api.sweater.entity.Author;
-import ru.test_api.sweater.repository.AuthorRepository;
+import ru.test_api.java_blog_engine.entity.Role;
+import ru.test_api.java_blog_engine.entity.Author;
+import ru.test_api.java_blog_engine.repository.AuthorRepository;
 
 @Service
 public class UserService implements UserDetailsService {

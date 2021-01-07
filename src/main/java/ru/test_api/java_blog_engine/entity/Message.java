@@ -1,4 +1,4 @@
-package ru.test_api.sweater.entity;
+package ru.test_api.java_blog_engine.entity;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import ru.test_api.sweater.service.Views;
+import ru.test_api.java_blog_engine.service.Views;
 
 @Entity
 public class Message {

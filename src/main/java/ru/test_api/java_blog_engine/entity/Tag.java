@@ -1,11 +1,11 @@
-package ru.test_api.sweater.entity;
+package ru.test_api.java_blog_engine.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import ru.test_api.sweater.service.Views;
+import ru.test_api.java_blog_engine.service.Views;
 
 
 @Entity
