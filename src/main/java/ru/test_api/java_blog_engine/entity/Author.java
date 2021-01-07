@@ -100,6 +100,5 @@ public class Author implements UserDetails {
     @Override
     public String toString() {
         return getUsername();
-    }
-    
+    }    
 }

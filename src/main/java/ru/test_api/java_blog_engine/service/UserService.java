@@ -32,8 +32,7 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found");
         } else {
             return user;            
-        }
-        
+        }        
     }
 
     public boolean saveAuthor(Author user) {
@@ -53,6 +52,5 @@ public class UserService implements UserDetailsService {
 
     public List<Author> findAll() {
         return userRepository.findAll();
-    }
-    
+    }    
 }

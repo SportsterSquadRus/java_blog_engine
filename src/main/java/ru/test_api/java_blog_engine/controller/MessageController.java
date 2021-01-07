@@ -82,7 +82,5 @@ public class MessageController {
         } else {
             throw new ResourceNotFoundException();            
         }
-        
-
     }
 }

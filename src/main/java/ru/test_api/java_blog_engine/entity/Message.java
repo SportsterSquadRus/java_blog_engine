@@ -91,6 +91,4 @@ public class Message {
     public String toString() {
         return getText();
     }
-
-
 }

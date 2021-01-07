@@ -76,8 +76,5 @@ public class MessageService {
         } catch (Exception e) {
             throw new ResourceNotFoundException();
         }
-
-    }
-
-    
+    }    
 }
